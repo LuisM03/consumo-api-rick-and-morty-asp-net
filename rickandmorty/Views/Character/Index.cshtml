@@ -1,0 +1,72 @@
+﻿@model List<Character>
+
+@{
+    ViewData["Title"] = "Rick And Morty App";
+
+    string GetActiveClass(int page) {
+        if (ViewBag.Page == page)
+        {
+            return "active";
+        }
+        return "";
+    }
+
+}
+
+
+
+<div class="text-center">
+    <h1 class="display-4">Rick And Morty App - Characters</h1>
+    <p>El Api de Rick And Morty Tiene un total de @ViewBag.AmountCharacters Personajes por ende solo consulté a 10 paginas de personajes.</p>
+</div>
+
+
+<div class="px-2 mt-5 row">
+    @{
+        foreach(var item in Model)
+        {
+            <div class="col-sm-3 p-2">
+                <div class="card">
+                    <img src="@item.image" class="card-img-top" alt="imagen del personaje">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.name</h5>
+                        
+                        <div class="d-flex align-items-center">
+                            <p class="card-text m-0">
+                                @item.species
+                            </p>
+                            <p class="m-0 mx-2"> - </p>
+                            <p class="d-flex align-items-center m-0">
+                            <p class="m-0 me-2">@item.status</p> @if (item.status == "Alive")
+                                    {
+                                        <div class="rounded-circle bg-green" style="width: 8px; height: 8px; background-color: forestgreen"></div>
+                                    }
+                                    else if (item.status == "Dead")
+                                    {
+                                        <div class="rounded-circle bg-green" style="width: 8px; height: 8px; background-color: red"></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="rounded-circle bg-green" style="width: 8px; height: 8px; background-color: darkslategrey"></div>
+                                    }
+                        </div>
+                        <p class="m-0">Genero: @item.gender</p>
+                        <p class="m-0">Planeta: @item.location.name</p>
+                        <a class="nav-link text-dark border p-1 rounded text-center mt-2" asp-area="" asp-controller="Character" asp-action="Detail" asp-route-id="@item.id">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        
+        @for(var i = 1; i<=10; i++)
+        {
+            <li class="page-item @GetActiveClass(@i)"><a class="page-link" href="@Url.Action("Index", "Character", new {page = @i})">@i</a></li>
+        }
+
+    </ul>
+</nav>

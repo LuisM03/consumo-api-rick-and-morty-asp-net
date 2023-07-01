@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int cantidad = 0;
+    foreach (var i in @ViewBag.Residents)
+    {
+        cantidad += 1;
+    }
+
+}
+
+
+
+<div class="d-flex align-items-center">
+    <div class="ml-3">
+        <h1>@ViewBag.Location.name</h1>
+        <p>Información del la Location.</p>
+    </div>
+</div>
+<div>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>Nombre</td>
+                <td>@ViewBag.Location.name</td>
+            </tr>
+            <tr>
+                <td>Tipo</td>
+                <td>@ViewBag.Location.type</td>
+            </tr>
+            <tr>
+                <td>Dimensión</td>
+                <td>@ViewBag.Location.dimension</td>
+            </tr>
+            <tr>
+                <td>Cantidad de residentes</td>
+                <td>@cantidad</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="text-dark" asp-area="" asp-controller="Location" asp-action="Index">Volver a las Locations</a>
+</div>

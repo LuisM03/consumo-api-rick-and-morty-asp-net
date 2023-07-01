@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Character";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="d-flex align-items-center">
+    <div style="width: 80px; height: 80px; border-radius: 8px; margin-right: 10px">
+        <img src="@ViewBag.Character.image" class="card-img" alt="imagen del personaje">
+    </div>
+    <div class="ml-3">
+        <h1>@ViewBag.Character.name</h1>
+        <p>Información del personaje.</p>
+    </div>
+</div>
+<div>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>Nombre</td>
+                <td>@ViewBag.Character.name</td>
+            </tr>
+            <tr>
+                <td>Estado</td>
+                <td>@ViewBag.Character.status</td>
+            </tr>
+            <tr>
+                <td>Raza</td>
+                <td>@ViewBag.Character.species</td>
+            </tr>
+            <tr>
+                <td>Genero</td>
+                <td>@ViewBag.Character.gender</td>
+            </tr>
+            <tr>
+                <td>Origen</td>
+                <td>@ViewBag.Character.origin.name</td>
+            </tr>
+            <tr>
+                <td>Ubicación</td>
+                <td>
+                    <div class="d-flex align-items-center" style="gap: 5px">
+                        <p class="mb-0">@ViewBag.Character.location.name</p>
+                        @*<a class="nav-link text-dark border p-1 rounded" asp-area="" asp-controller="Character" asp-action="Location" asp-route-id="@lastSegment">Visitar ubicación</a>*@
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="text-dark" asp-area="" asp-controller="Character" asp-action="Index">Volver a los characters</a>
+</div>
+

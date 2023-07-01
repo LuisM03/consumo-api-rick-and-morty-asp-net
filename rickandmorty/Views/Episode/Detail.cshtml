@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int cantidad = 0;
+    foreach (var i in @ViewBag.Episode.characters)
+    {
+        cantidad += 1;
+    }
+}
+
+
+<div class="d-flex align-items-center">
+    <div class="ml-3">
+        <h1>@ViewBag.Episode.name</h1>
+        <p>Información del episode.</p>
+    </div>
+</div>
+
+<div>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>Nombre</td>
+                <td>@ViewBag.Episode.name</td>
+            </tr>
+            <tr>
+                <td>Fecha</td>
+                <td>@ViewBag.Episode.air_date</td>
+            </tr>
+            <tr>
+                <td>Código</td>
+                <td>@ViewBag.Episode.episode</td>
+            </tr>
+            <tr>
+                <td>Cantidad de personajes</td>
+                <td>@cantidad</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="text-dark" asp-area="" asp-controller="Episode" asp-action="Index">Volver a los episodeos</a>
+</div>
+
+
